@@ -1,0 +1,115 @@
+body{
+    margin : 0;
+}
+
+.header {
+    padding: 10px;
+    background-color: #000000;
+    color : white;
+}
+
+
+.header section {
+    color : #FF8C00;
+}
+
+.header ul {
+    padding : 0;
+}
+
+.header ul li {
+    display : inline-block;
+    width: 2.45%;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.manage{
+    position: relative;
+    padding: 0;
+}
+
+.manage ul{
+   display: none;
+   list-style-type: none;
+}
+
+.manage:hover > ul{
+    display: inline-block;
+    position: absolute;
+    background-color: black;
+    top :100%;
+    right: : 50%;
+    width: 150%;
+}
+
+.manage:hover > ul > li{
+  padding: 20px;
+}
+
+
+.manage > ul > li:hover{
+   background-color:black;
+}
+.content {
+    padding: 20px;
+}
+
+.login{
+	height: 240px;
+	width: 900px;
+    border-radius: 7px;
+	border-top: 2px solid black;
+	border-bottom : 2px solid black;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	background-color: #eaeaea;
+	position:relative;
+	margin:auto;
+	margin-bottom: 50px;
+	padding-bottom: 0;
+}
+
+.register{
+	height: 400px;
+	width: 900px;
+    border-radius: 7px;
+	border-top: 2px solid black;
+	border-bottom : 2px solid black;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	background-color: #eaeaea;
+	position:relative;
+	margin:auto;
+	margin-bottom: 50px;
+	padding-bottom: 0;
+}
+
+button{
+    background-color: blue;
+    border: none;
+    color: white;
+    border-radius: 7px;
+    align-items: center;
+}
+
+.footer {
+    padding: 8px;
+    background-color: #000000;
+    color : white;
+    text-align : center;
+}
+
+.footer a {
+    color : #FF8C00;
+    text-decoration: none;
+}
+
+td > t{
+    color: blue;
+}
+
+td > g{
+    color: grey;
+}
