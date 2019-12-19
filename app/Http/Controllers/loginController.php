@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+new \Illuminate\Http\Response;
 use App\User;
 
 class loginController extends Controller
@@ -16,13 +17,16 @@ class loginController extends Controller
     }
 
     public function loginProcess(Request $request)
-       {
-           $credentials = $request->only('email', 'password');
+    {
+        $credentials = $request->only('email', 'password');
 
-           if (Auth::attempt($credentials)) {
-               return redirect()->intended('member');
-           }
-       }
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('member');
+        }
+        else{
+            return redirect('/login')->withErrors(['error', 'Wrong Password!']);;
+        }
+    }
 
 
 

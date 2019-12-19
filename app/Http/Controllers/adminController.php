@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Admin;
 use App\User;
 use App\Movie;
@@ -11,14 +12,53 @@ use App\Genre;
 class adminController extends Controller
 {
     public function profile(){
-        $users = User::all();
+        $users = User::where('role','admin')->get();
 
         return view ('admin.profileAdmin', ['profile' => $users]);
+    }
+
+    public function updateProfile($id){
+        $users = User::findOrFail($id);
+        return view ('admin.updateProfile',['profile' => $users]);
+    }
+
+    public function updateProfileProcess($id,Request $request){
+        if ($request->isMethod('post')){
+            $validateData = $request->validate([
+                'name' =>'required',
+                'email' =>'required',
+                'role' =>'required',
+                'password' =>'required',
+                'confpassword' =>'required',
+                'sex' => 'required',
+                'address' => 'required',
+                'bday' =>'required',
+                'file_upload'=>'required'
+            ]);
+
+            try{
+                $users = User::findOrFail($id);
+                $users->name = $request->name;
+                $users->email = $request->email;
+                $users->role = $request->role;
+                $users->password = bcrypt($request->password);
+                $users->password = bcrypt($request->confpassword);
+                $users->gender = $request->sex;
+                $users->address = $request->address;
+                $users->birthday = $request->bday;
+                $users->photo = $request->file_upload;
+                $users->save();
+                return redirect('/profileAdmin')->with('success','Data Updated Successfully');
+            }catch (Exception $e){
+                dd($e);
+            }
+        }else{
+            return redirect('/updateProfile');
+        }
     }
     //user
     public function manageUser(){
         $users = User::all();
-
         return view ('admin.manageUser', ['manUser' => $users]);
     }
 
@@ -236,7 +276,15 @@ class adminController extends Controller
     }
 
     public function listMoviesAdmin(){
-        $movie = Movie::all();
-        return view ('admin.homeAdmin',['listMovies' => $movie]);
+        $movie = DB::table('movies')->paginate(3);
+        return view ('admin.homeAdmin',['movie' => $movie]);
+    }
+    public function searchMovieAdmin(Request $request){
+        $search = $request->search;
+        $movie = DB::table('movies')
+        ->where('title','like',"%".$search."%")
+        ->orwhere('genre','like',"%".$search."%")
+        ->paginate();
+        return view ('admin.homeAdmin',['movie' => $movie]);
     }
 }

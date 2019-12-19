@@ -34,6 +34,10 @@
                     <button type="submit">Login</button>
                 </td>
             </tr>
+            <tr>
+            <td>Remember me</td>
+            <td><input type="checkbox" name="check" id=""></td>
+        </tr>
         </table>
         @if ($errors->any())
         <div class="alert alert-danger">

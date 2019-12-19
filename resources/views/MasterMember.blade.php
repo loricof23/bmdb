@@ -21,7 +21,7 @@
                 <a href = "/login">Logout</a>
             </li>
             <li>
-                <a href = "/saved">Saved</a>
+                <a href = "/save">Saved</a>
             </li>
 
             <li>
